@@ -1,0 +1,14 @@
+﻿@model DishListViewModel
+
+<h1>Dishes</h1>
+
+@foreach (var dish in Model.Dishes)
+{
+    <a asp-controller="Dish" asp-action="Details" asp-route-id="@dish.DishId">
+        <div style="display: inline-block; background-color:#444;">
+            <img src="@dish.ImageUrl" width="300" height="300" />
+            <h2>@dish.Name</h2>
+            <h2>@dish.Price</h2>
+        </div>
+    </a> 
+}

@@ -10,8 +10,8 @@ using RistoranteMVC.Models;
 namespace RistoranteMVC.Migrations
 {
     [DbContext(typeof(RistoranteMVCDbContext))]
-    [Migration("20211010222736_InitMigration")]
-    partial class InitMigration
+    [Migration("20211011120147_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -57,6 +57,11 @@ namespace RistoranteMVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                
+                endpoints.MapControllerRoute(
+                    name: "categoryfilter",
+                    pattern: "{controller=Dish}/{action=List}/{categoryId?}");
+
             });
         }
     }

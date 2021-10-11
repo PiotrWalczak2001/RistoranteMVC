@@ -1,1 +1,17 @@
-﻿<h1>Ale to bangla</h1>
+﻿@model HomeViewModel
+
+<h1>Ristorante MVC Welcome!</h1>
+<h2>Today we recommend:</h2>
+
+@foreach (var rDish in Model.RecommendedDishes)
+{
+    <a asp-controller="Dish" asp-action="Details" asp-route-id="@rDish.DishId">
+        <div style="display: inline-block; background-color:#444;">
+            <img src="@rDish.ImageUrl" width="300" height="300" />
+            <h2>@rDish.Name</h2>
+            <h2>@rDish.Price</h2>
+        </div>
+    </a>
+    
+    
+}
