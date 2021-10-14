@@ -1,11 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@using RistoranteMVC.Auth
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IAuthorizationService AuthorizationService
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/css/styles.css"/>
+    <script src="https://kit.fontawesome.com/3eba42aa9f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/main.css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-danger">
@@ -19,27 +28,32 @@
                         <a class="nav-link active" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
 
-                    
-                        @await Component.InvokeAsync("CategoryMenu")
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-controller="About" asp-action="Index">About us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-controller="Contact" asp-action="Index">Contact</a>
-                    </li>
+
+                    @await Component.InvokeAsync("CategoryMenu")
+
+                    @await Component.InvokeAsync("ShoppingCartContent")
+
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Admin" asp-action="Index">Admin panel</a>
+                        </li>
+                    }
+
+
+                    @await Html.PartialAsync("LoginPartial")
+
                 </ul>
             </div>
         </div>
     </nav>
 
 
-        <div>
-            @RenderBody()
-        </div>
+    <div>
+        @RenderBody()
+    </div>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

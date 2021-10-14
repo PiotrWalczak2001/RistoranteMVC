@@ -1,3 +1,4 @@
 ﻿@model DishDetailsViewModel
 
 <h1>@Model.Dish.Name</h1>
+<a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@Model.Dish.DishId">Add to shopping cart</a>

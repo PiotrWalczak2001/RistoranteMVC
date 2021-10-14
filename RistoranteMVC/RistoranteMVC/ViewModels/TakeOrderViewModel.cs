@@ -2,8 +2,8 @@
 
 namespace RistoranteMVC.ViewModels
 {
-    public class DishDetailsViewModel
+    public class TakeOrderViewModel
     {
-        public Dish Dish { get; set; }
+        public Order Order { get; set; }
     }
 }

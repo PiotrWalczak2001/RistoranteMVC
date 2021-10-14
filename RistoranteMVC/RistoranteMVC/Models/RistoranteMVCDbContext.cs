@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using RistoranteMVC.Auth;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RistoranteMVC.Models
 {
-    public class RistoranteMVCDbContext : DbContext
+    public class RistoranteMVCDbContext : IdentityDbContext<ApplicationUser>
     {
         public RistoranteMVCDbContext(DbContextOptions<RistoranteMVCDbContext> options) : base(options)
         {
@@ -14,12 +14,43 @@ namespace RistoranteMVC.Models
 
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Coupon> Coupons { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            var adminRoleId = "DAFF313F-89DD-4621-BC3F-B6EE1F2A23C6";
+
+            ApplicationUser user = new ApplicationUser()
+            {
+                FirstName = "Janeczek",
+                LastName = "Adminowy",
+                Id = "D174C90E-6C1D-452C-B91F-CA39C112B73E",
+                Email = "admin@mail.com",
+                NormalizedEmail = "ADMIN@MAIL.COM",
+                EmailConfirmed = true,
+                UserName = "Janeczek",
+                NormalizedUserName = "JANECZEK",
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+
+            var password = new PasswordHasher<ApplicationUser>();
+            var hashed = password.HashPassword(user, "Adminowy$12");
+            user.PasswordHash = hashed;
+
+            modelBuilder.Entity<ApplicationUser>().HasData(user);
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { UserId = user.Id, RoleId = adminRoleId });
+
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole 
+            { 
+                Id = adminRoleId,
+                Name = "Admin",
+                NormalizedName = "ADMINISTRATOR"
+            });
+
             modelBuilder.Entity<Category>().HasData(new Category
             {
                 CategoryId = Guid.Parse("9BCD1113-6B23-4493-BC83-0C80A436430A"),

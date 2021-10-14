@@ -10,8 +10,8 @@ using RistoranteMVC.Models;
 namespace RistoranteMVC.Migrations
 {
     [DbContext(typeof(RistoranteMVCDbContext))]
-    [Migration("20211011120212_SeedData")]
-    partial class SeedData
+    [Migration("20211014144437_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,217 @@ namespace RistoranteMVC.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "DAFF313F-89DD-4621-BC3F-B6EE1F2A23C6",
+                            ConcurrencyStamp = "c8594eb9-e8fc-4f9e-8cf9-a122ffc7d837",
+                            Name = "Admin",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("RistoranteMVC.Auth.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+                });
 
             modelBuilder.Entity("RistoranteMVC.Models.Category", b =>
                 {
@@ -62,38 +273,6 @@ namespace RistoranteMVC.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RistoranteMVC.Models.Coupon", b =>
-                {
-                    b.Property<Guid>("CouponId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CouponName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Discount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("DishId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("OnAll")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("OnCategory")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("OnDish")
-                        .HasColumnType("bit");
-
-                    b.HasKey("CouponId");
-
-                    b.ToTable("Coupons");
-                });
-
             modelBuilder.Entity("RistoranteMVC.Models.Dish", b =>
                 {
                     b.Property<Guid>("DishId")
@@ -130,7 +309,7 @@ namespace RistoranteMVC.Migrations
                     b.HasData(
                         new
                         {
-                            DishId = new Guid("acf3b296-e0b4-4ff6-a5b8-25492aa78ce0"),
+                            DishId = new Guid("14849acc-cc85-41b4-8766-494262635eca"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "Delicious classic from the pizza family",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -141,7 +320,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("1edde71e-4146-4db3-aa01-f0c822f89375"),
+                            DishId = new Guid("c48dcf3e-1dc0-4dd7-8337-69d51feff5bc"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "The best for meetings with friends",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -152,7 +331,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("6f9c3035-2056-413c-916b-80567f1e5ad1"),
+                            DishId = new Guid("092ac275-7d68-42f3-8e23-2385788ae304"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "American pizza in the Italian version",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -163,7 +342,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("e84aecdd-205f-4da3-9621-70799479b8ad"),
+                            DishId = new Guid("dc0cc3ac-ce43-4635-832b-10ff23fa1495"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "the best cheeses on your favorite pizza",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -174,7 +353,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("e7346c59-22c7-48c5-8b75-7edd412a4cde"),
+                            DishId = new Guid("88b9c79c-1409-456d-ba43-cdc90e67e289"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "The best pasta with classic bolognese sauce",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -185,7 +364,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("6d866692-40d6-4a7d-bbdb-b66b14637c0a"),
+                            DishId = new Guid("110d8eaa-25b5-47aa-8168-030a9fda783e"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "Our kitchen's bestseller",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -196,7 +375,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("8b7ae5da-da0b-4dee-884f-33a8d71ef761"),
+                            DishId = new Guid("0dc345ab-cb02-4fe2-837b-814e383f70db"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "For more hunger",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -207,7 +386,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("798e5316-7d84-49f7-81dc-b3d0d8457b6f"),
+                            DishId = new Guid("66ccba18-2e43-4e85-9e4c-9507d9ad8f22"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "This taste will surprise you",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -218,7 +397,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("a8f27650-3dfa-4cb7-b1ea-3523be7a6209"),
+                            DishId = new Guid("2473317c-36ba-4d81-8232-8897f830caca"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Its taste comes from the best ingredients",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -229,7 +408,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("a6ebc683-3ff4-4942-90d3-a47fc1d9e3f9"),
+                            DishId = new Guid("472f8c7e-c560-41b0-a816-c5dda1beafd7"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Our novelty",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -240,7 +419,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("533ea5dd-039f-4485-a335-1f9f20ebb202"),
+                            DishId = new Guid("96601e4f-bab3-4a8b-873f-eda798c8a683"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Tasty and nutritious",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -251,7 +430,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("3848e429-9ed6-4243-bfcf-89784957fccb"),
+                            DishId = new Guid("2d18db44-b812-44b3-9eab-7a3dd31b5dfe"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Very aromatic dish that will delight everyone",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -262,7 +441,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("6977356a-9b4f-4186-82d8-f62f5602e5e1"),
+                            DishId = new Guid("f278f545-72e5-4455-84ea-c93b1658d1ec"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "The best dessert that will impress your other half",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -273,7 +452,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("5e5348fb-555b-4482-9ca6-2d23e2304851"),
+                            DishId = new Guid("f330dd1e-4d8a-4317-95ad-84afad8aa5ee"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "Melts in your mouth",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -284,7 +463,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("94ec8d20-84d3-4f24-8d86-ed01c262884e"),
+                            DishId = new Guid("1e73f4aa-5115-4bd9-be16-255c4898e789"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "Sweet and cold what more could you want",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -295,7 +474,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("af208f65-15e0-49c4-80cf-1c113bcc7eb9"),
+                            DishId = new Guid("4e8a7dd7-9954-4f92-824c-a81454e1c247"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "It is worth a try",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -306,7 +485,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("72417ead-7712-4783-b72f-cc3bc8f08977"),
+                            DishId = new Guid("df9e7226-4df1-46cf-84bb-74128ca8ac5a"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just good coffee",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -317,7 +496,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("2e76d6a2-ae95-4510-8d54-78919f6f86f0"),
+                            DishId = new Guid("b2c50814-3222-4e2d-b3e0-f7c0f66a717a"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just good tea",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -328,7 +507,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("61adeaf0-d3ed-4732-ab58-7ae83492abcc"),
+                            DishId = new Guid("40dd5d10-a7a7-405b-b984-1fdc90ccc67a"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just water",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -339,7 +518,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("76529e74-8e95-4375-8479-c3c5aa778cc6"),
+                            DishId = new Guid("cf82c88a-8753-42af-b4b3-7b246868f52e"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just Coca-Cola",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -421,6 +600,79 @@ namespace RistoranteMVC.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("RistoranteMVC.Models.ShoppingCartItem", b =>
+                {
+                    b.Property<Guid>("ShoppingCartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("DishId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ShoppingCartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ShoppingCartItemId");
+
+                    b.HasIndex("DishId");
+
+                    b.ToTable("ShoppingCartItems");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("RistoranteMVC.Auth.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("RistoranteMVC.Auth.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RistoranteMVC.Auth.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("RistoranteMVC.Auth.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RistoranteMVC.Models.Dish", b =>
                 {
                     b.HasOne("RistoranteMVC.Models.Category", "Category")
@@ -449,6 +701,15 @@ namespace RistoranteMVC.Migrations
                     b.Navigation("Dish");
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("RistoranteMVC.Models.ShoppingCartItem", b =>
+                {
+                    b.HasOne("RistoranteMVC.Models.Dish", "Dish")
+                        .WithMany()
+                        .HasForeignKey("DishId");
+
+                    b.Navigation("Dish");
                 });
 
             modelBuilder.Entity("RistoranteMVC.Models.Order", b =>
