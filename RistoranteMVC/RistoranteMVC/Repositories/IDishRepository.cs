@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RistoranteMVC.Contracts
+namespace RistoranteMVC.Repositories
 {
     public interface IDishRepository : IBaseRepository<Dish>
     {

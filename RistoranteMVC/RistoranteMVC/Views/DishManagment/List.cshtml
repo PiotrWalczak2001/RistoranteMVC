@@ -1,0 +1,21 @@
+﻿@model List<Dish>
+
+<a asp-controller="DishManagment" asp-action="Create">Create new dish</a>
+
+@foreach (var dish in Model)
+{
+    <p>@dish.DishId</p>
+    <p>@dish.Name</p>
+
+    <form asp-controller="DishManagment" asp-action="Details" asp-route-id="@dish.DishId" method="get">
+        <button type="submit">Details</button>
+    </form>
+
+    <form asp-controller="DishManagment" asp-action="Edit" asp-route-id="@dish.DishId" method="get">
+        <button type="submit">Edit</button>
+    </form>
+
+    <form asp-controller="DishManagment" asp-action="Delete" asp-route-id="@dish.DishId" method="post">
+        <button type="submit">Delete</button>
+    </form>
+}

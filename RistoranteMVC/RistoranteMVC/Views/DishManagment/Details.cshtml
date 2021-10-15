@@ -1,0 +1,17 @@
+﻿@model Dish
+
+<h1>Name: @Model.Name</h1>
+<h3>Description: @Model.Description</h3>
+<h3>CategoryId: @Model.CategoryId</h3>
+<h3>Category name: @Model.Category.Name</h3>
+<h3>Kcal: @Model.Kcal kcal</h3>
+<h3>Price: @Model.Price.ToString("c")</h3>
+@if (Model.Recommended)
+{
+    <h3>Recommended: yes</h3>
+}
+else
+{
+    <h3>Recommended: no</h3>
+}
+<a asp-controller="DishManagment" asp-action="Edit" asp-route-id="@Model.DishId">Edit</a>

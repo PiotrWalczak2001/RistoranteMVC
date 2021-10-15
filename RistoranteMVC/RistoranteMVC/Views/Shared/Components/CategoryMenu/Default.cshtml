@@ -1,11 +1,11 @@
-﻿@model CategoryViewModel
+﻿@model List<Category>
 
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" asp-controller="Dish" asp-action="List" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Menu
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            @foreach (var category in Model.Categories)
+            @foreach (var category in Model)
             {
                 <li><a class="dropdown-item" asp-controller="Dish" asp-action="List" asp-route-categoryId="@category.CategoryId">@category.Name</a></li>
             }

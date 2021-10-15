@@ -1,5 +1,4 @@
-﻿using RistoranteMVC.Contracts;
-using RistoranteMVC.Models;
+﻿using RistoranteMVC.Models;
 using System;
 
 namespace RistoranteMVC.Repositories

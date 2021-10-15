@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RistoranteMVC.Contracts;
-using RistoranteMVC.ViewModels;
+using RistoranteMVC.Repositories;
 
 namespace RistoranteMVC.Components
 {
@@ -14,8 +13,7 @@ namespace RistoranteMVC.Components
         
         public IViewComponentResult Invoke()
         {
-            var categories = _categoryRepository.ListAll();
-            return View(new CategoryViewModel { Categories = categories});
+            return View(_categoryRepository.ListAll());
         }
     }
 }

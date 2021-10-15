@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RistoranteMVC.Contracts;
 using RistoranteMVC.Models;
+using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
 using System;
 using System.Linq;

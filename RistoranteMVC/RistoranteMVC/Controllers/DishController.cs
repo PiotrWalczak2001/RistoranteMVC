@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RistoranteMVC.Contracts;
 using RistoranteMVC.Models;
+using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,8 +10,10 @@ namespace RistoranteMVC.Controllers
     public class DishController : Controller
     {
         private readonly IDishRepository _dishRepository;
-        public DishController(IDishRepository dishRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public DishController(IDishRepository dishRepository, ICategoryRepository categoryRepository)
         {
+            _categoryRepository = categoryRepository;
             _dishRepository = dishRepository;
         }
         public ViewResult List(string categoryId)
@@ -32,8 +34,9 @@ namespace RistoranteMVC.Controllers
         [Route("[controller]/Details/{id}")]
         public IActionResult Details(Guid id)
         {
-            var dish = _dishRepository.GetById(id);
-            return View(new DishDetailsViewModel { Dish = dish });
+            var matchingDish = _dishRepository.GetById(id);
+            matchingDish.Category = _categoryRepository.GetById(matchingDish.CategoryId);
+            return View(matchingDish);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using RistoranteMVC.Models;
 
-namespace RistoranteMVC.Contracts
+namespace RistoranteMVC.Repositories
 {
     public interface IOrderRepository
     {

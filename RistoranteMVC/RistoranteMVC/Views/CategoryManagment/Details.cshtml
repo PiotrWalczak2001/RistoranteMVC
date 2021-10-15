@@ -1,0 +1,5 @@
+﻿@model Category
+
+<h1>@Model.Name</h1>
+<h3>@Model.CategoryId</h3>
+<a asp-controller="CategoryManagment" asp-action="Edit" asp-route-id="@Model.CategoryId">Edit</a>

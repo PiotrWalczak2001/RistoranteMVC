@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RistoranteMVC.Auth;
-using RistoranteMVC.Contracts;
 using RistoranteMVC.Models;
 using RistoranteMVC.Repositories;
 

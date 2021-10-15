@@ -1,76 +1,76 @@
-﻿@model TakeOrderViewModel
+﻿@model Order
 
 <form asp-controller="Order" asp-action="TakeOrder" method="post" role="form">
     <div asp-validation-summary="All"></div>
     <div class="form-group">
-        <label asp-for="@Model.Order.FirstName"></label>
+        <label asp-for="@Model.FirstName"></label>
         <div>
-            <input asp-for="@Model.Order.FirstName" />
-            <span asp-validation-for="@Model.Order.FirstName"></span>
+            <input asp-for="@Model.FirstName" />
+            <span asp-validation-for="@Model.FirstName"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.LastName"></label>
+        <label asp-for="@Model.LastName"></label>
         <div>
-            <input asp-for="@Model.Order.LastName" />
-            <span asp-validation-for="@Model.Order.LastName"></span>
+            <input asp-for="@Model.LastName" />
+            <span asp-validation-for="@Model.LastName"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.Email"></label>
+        <label asp-for="@Model.Email"></label>
         <div>
-            <input asp-for="@Model.Order.Email" />
-            <span asp-validation-for="@Model.Order.Email"></span>
+            <input asp-for="@Model.Email" />
+            <span asp-validation-for="@Model.Email"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.PhoneNumber"></label>
+        <label asp-for="@Model.PhoneNumber"></label>
         <div>
-            <input asp-for="@Model.Order.PhoneNumber" />
-            <span asp-validation-for="@Model.Order.PhoneNumber"></span>
+            <input asp-for="@Model.PhoneNumber" />
+            <span asp-validation-for="@Model.PhoneNumber"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.AddressLine1"></label>
+        <label asp-for="@Model.AddressLine1"></label>
         <div>
-            <input asp-for="@Model.Order.AddressLine1" />
-            <span asp-validation-for="@Model.Order.AddressLine1"></span>
+            <input asp-for="@Model.AddressLine1" />
+            <span asp-validation-for="@Model.AddressLine1"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.AddressLine2"></label>
+        <label asp-for="@Model.AddressLine2"></label>
         <div>
-            <input asp-for="@Model.Order.AddressLine2" />
-            <span asp-validation-for="@Model.Order.AddressLine2"></span>
+            <input asp-for="@Model.AddressLine2" />
+            <span asp-validation-for="@Model.AddressLine2"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.ZipCode"></label>
+        <label asp-for="@Model.ZipCode"></label>
         <div>
-            <input asp-for="@Model.Order.ZipCode" />
-            <span asp-validation-for="@Model.Order.ZipCode"></span>
+            <input asp-for="@Model.ZipCode" />
+            <span asp-validation-for="@Model.ZipCode"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.City"></label>
+        <label asp-for="@Model.City"></label>
         <div>
-            <input asp-for="@Model.Order.City" />
-            <span asp-validation-for="@Model.Order.City"></span>
+            <input asp-for="@Model.City" />
+            <span asp-validation-for="@Model.City"></span>
         </div>
     </div>
 
     <div>
-        <label asp-for="@Model.Order.State"></label>
+        <label asp-for="@Model.State"></label>
         <div>
-            <input asp-for="@Model.Order.State" />
-            <span asp-validation-for="@Model.Order.State"></span>
+            <input asp-for="@Model.State" />
+            <span asp-validation-for="@Model.State"></span>
         </div>
     </div>
 

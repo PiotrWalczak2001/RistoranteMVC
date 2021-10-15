@@ -1,0 +1,76 @@
+﻿@model EditDishViewModel
+
+<form asp-controller="DishManagment" asp-action="Edit" method="post" role="form">
+    <h1>Edit dish</h1>
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="@Model.Dish.DishId"></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Dish.DishId" />
+            <span asp-validation-for="@Model.Dish.DishId"></span>
+        </div>
+    </div>
+
+
+    <div>
+        <label asp-for="@Model.Dish.Name"></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Dish.Name" />
+            <span asp-validation-for="@Model.Dish.Name"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Dish.Description"></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Dish.Description" />
+            <span asp-validation-for="@Model.Dish.Description"></span>
+        </div>
+    </div>
+    
+    <div>
+        <label asp-for="@Model.Dish.CategoryId"></label>
+        <div class="col-md-10">
+
+            <select asp-for="@Model.Dish.CategoryId">
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.CategoryId"> @category.Name </option>
+                }
+            </select>
+            <span asp-validation-for="@Model.Dish.CategoryId"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Dish.Kcal"></label>
+        <div class="col-md-10">
+            <input type="number" asp-for="@Model.Dish.Kcal" />
+            <span asp-validation-for="@Model.Dish.Kcal"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Dish.Price"></label>
+        <div class="col-md-10">
+            <input type="number" asp-for="@Model.Dish.Price" />
+            <span asp-validation-for="@Model.Dish.Price"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Dish.Recommended"></label>
+        <div class="col-md-10">
+            <input type="checkbox" asp-for="@Model.Dish.Recommended" />
+            <span asp-validation-for="@Model.Dish.Description"></span>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <input type="submit" value="Edit" />
+        </div>
+    </div>
+
+</form>

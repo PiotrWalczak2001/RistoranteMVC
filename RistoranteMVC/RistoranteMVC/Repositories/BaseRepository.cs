@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RistoranteMVC.Contracts;
 using RistoranteMVC.Models;
 using System;
 using System.Collections.Generic;
