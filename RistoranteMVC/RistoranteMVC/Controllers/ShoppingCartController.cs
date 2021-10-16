@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RistoranteMVC.Models;
 using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
@@ -7,6 +8,7 @@ using System.Linq;
 
 namespace RistoranteMVC.Controllers
 {
+    [AllowAnonymous]
     public class ShoppingCartController : Controller
     {
         private readonly IDishRepository _dishRepository;
@@ -17,6 +19,7 @@ namespace RistoranteMVC.Controllers
             _shoppingCart = shoppingCart;
         }
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var itemsFromCart = _shoppingCart.GetShoppingCartItems();
@@ -36,6 +39,7 @@ namespace RistoranteMVC.Controllers
             return View(shoppingCartViewModel);
         }
 
+        [AllowAnonymous]
         public RedirectToActionResult AddToShoppingCart(Guid id)
         {
             var dishToAdd = _dishRepository.ListAll().FirstOrDefault(d => d.DishId == id);
@@ -47,6 +51,7 @@ namespace RistoranteMVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public RedirectToActionResult RemoveFromShoppingCart(Guid id)
         {
             var dishToRemove = _dishRepository.ListAll().FirstOrDefault(d => d.DishId == id);
@@ -55,6 +60,12 @@ namespace RistoranteMVC.Controllers
             {
                 _shoppingCart.RemoveFromCart(dishToRemove);
             }
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult ClearShoppingCart()
+        {
+            _shoppingCart.ClearCart();
             return RedirectToAction("Index");
         }
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
 using System;
@@ -45,8 +44,7 @@ namespace RistoranteMVC.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            var dishToDelete = _dishRepository.GetById(id);
-            _dishRepository.Delete(dishToDelete);
+            _dishRepository.Delete(_dishRepository.GetById(id));
             return RedirectToAction("List");
         }
 

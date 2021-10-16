@@ -5,6 +5,14 @@
     <div asp-validation-summary="All"></div>
 
     <div>
+        <label asp-for="@Model.CategoryId"></label>
+        <div class="col-md-10">
+            <input value="@Guid.NewGuid()" asp-for="@Model.CategoryId" />
+            <span asp-validation-for="@Model.CategoryId"></span>
+        </div>
+    </div>
+
+    <div>
         <label asp-for="@Model.Name"></label>
         <div class="col-md-10">
             <input asp-for="@Model.Name" />

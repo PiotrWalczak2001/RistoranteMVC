@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RistoranteMVC.Auth;
+using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
 using System.Threading.Tasks;
 
@@ -9,13 +10,11 @@ namespace RistoranteMVC.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(IAccountRepository accountRepository)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _accountRepository = accountRepository;
         }
 
         [AllowAnonymous]
@@ -28,38 +27,29 @@ namespace RistoranteMVC.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if (!ModelState.IsValid)
-                return View(loginViewModel);
-
-            var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
-
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
-                if (result.Succeeded)
-                {
+                if (await _accountRepository.Login(loginViewModel))
                     return RedirectToAction("Index", "Home");
-                }
             }
-
+  
             ModelState.AddModelError("", "Username/password not found");
             return View(loginViewModel);
         }
 
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = registerViewModel.UserName, FirstName = registerViewModel.FirstName, LastName = registerViewModel.LastName, Email = registerViewModel.Email };
-                var result = await _userManager.CreateAsync(user, registerViewModel.Password);
-
-                if (result.Succeeded)
+                if (await _accountRepository.Register(registerViewModel))
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -70,7 +60,7 @@ namespace RistoranteMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            await _accountRepository.Logout();
             return RedirectToAction("Index", "Home");
         }
 

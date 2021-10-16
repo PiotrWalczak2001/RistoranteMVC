@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RistoranteMVC.Models;
 using RistoranteMVC.Repositories;
 
 namespace RistoranteMVC.Controllers
 {
+    [AllowAnonymous]
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
@@ -14,13 +16,14 @@ namespace RistoranteMVC.Controllers
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult TakeOrder(Order order)
         {
             var itemsFromCart = _shoppingCart.GetShoppingCartItems();
@@ -29,6 +32,7 @@ namespace RistoranteMVC.Controllers
             if(_shoppingCart.ShoppingCartItems.Count == 0)
             {
                 ModelState.AddModelError("", "Empty cart");
+                return RedirectToAction("Index");
             }
 
             if(ModelState.IsValid)
@@ -40,7 +44,7 @@ namespace RistoranteMVC.Controllers
 
             return View(order);
         }
-
+        [AllowAnonymous]
         public IActionResult CompleteOrder()
         {
             return View();

@@ -24,11 +24,10 @@ namespace RistoranteMVC
 
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<RistoranteMVCDbContext>().AddDefaultTokenProviders();
 
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
 
             services.AddScoped<ShoppingCart>(serviceProvider => ShoppingCart.GetCart(serviceProvider));
 

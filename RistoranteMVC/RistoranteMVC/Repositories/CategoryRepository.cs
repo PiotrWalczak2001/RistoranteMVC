@@ -1,12 +1,46 @@
-﻿using RistoranteMVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RistoranteMVC.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RistoranteMVC.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
-        public CategoryRepository(RistoranteMVCDbContext dbContext) : base(dbContext)
+        protected readonly RistoranteMVCDbContext _dbContext;
+        public CategoryRepository(RistoranteMVCDbContext dbContext)
         {
+            _dbContext = dbContext;
+        }
 
+        public Category GetById(Guid id)
+        {
+            return _dbContext.Categories.Find(id);
+        }
+
+        public List<Category> ListAll()
+        {
+            return _dbContext.Categories.ToList();
+        }
+
+        public Category Add(Category category)
+        {
+            _dbContext.Categories.Add(category);
+            _dbContext.SaveChanges();
+            return category;
+        }
+
+        public void Delete(Category category)
+        {
+            _dbContext.Categories.Remove(category);
+            _dbContext.SaveChanges();
+        }
+
+        public void Update(Category category)
+        {
+            _dbContext.Entry(category).State = EntityState.Modified;
+            _dbContext.SaveChanges();
         }
     }
 }

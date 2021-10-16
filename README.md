@@ -1,6 +1,6 @@
 # RistoranteMVC
 
-(WORK IN PROGRESS)
+(WORK IN PROGRESS)\
 Sample application project for Asp.Net Core MVC
 
 - Asp.Net Core MVC

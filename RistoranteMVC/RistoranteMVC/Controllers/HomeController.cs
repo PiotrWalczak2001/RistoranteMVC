@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RistoranteMVC.Models;
 using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 
 namespace RistoranteMVC.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly IDishRepository _dishRepository;
@@ -13,7 +15,8 @@ namespace RistoranteMVC.Controllers
         {
             _dishRepository = dishRepository;
         }
-        public ViewResult Index()
+        [AllowAnonymous]
+        public IActionResult Index()
         {
             List<Dish> recommendedDishes = _dishRepository.RecommendedDishes();
             if(recommendedDishes.Count < 1)

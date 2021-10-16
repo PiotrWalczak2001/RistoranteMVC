@@ -33,7 +33,6 @@ namespace RistoranteMVC.Controllers
         [HttpPost]
         public IActionResult Create(Category categoryToCreate)
         {
-            categoryToCreate.CategoryId = Guid.NewGuid();
             _categoryRepository.Add(categoryToCreate);
             return RedirectToAction("List");
         }
@@ -41,8 +40,7 @@ namespace RistoranteMVC.Controllers
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            var categoryToDelete = _categoryRepository.GetById(id);
-            _categoryRepository.Delete(categoryToDelete);
+            _categoryRepository.Delete(_categoryRepository.GetById(id));
             return RedirectToAction("List");
         }
 
