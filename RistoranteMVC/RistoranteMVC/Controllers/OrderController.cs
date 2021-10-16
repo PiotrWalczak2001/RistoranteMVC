@@ -20,6 +20,7 @@ namespace RistoranteMVC.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult TakeOrder(Order order)
         {
             var itemsFromCart = _shoppingCart.GetShoppingCartItems();
@@ -36,6 +37,7 @@ namespace RistoranteMVC.Controllers
                 _shoppingCart.ClearCart();
                 return RedirectToAction("CompleteOrder");
             }
+
             return View(order);
         }
 

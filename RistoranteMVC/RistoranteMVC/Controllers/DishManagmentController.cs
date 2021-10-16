@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
 using System;
@@ -31,14 +32,12 @@ namespace RistoranteMVC.Controllers
 
         public IActionResult Create()
         {
-            return View(new EditDishViewModel { Categories = _categoryRepository.ListAll() } );
+            return View(new EditDishViewModel { Categories = _categoryRepository.ListAll() });
         }
 
         [HttpPost]
         public IActionResult Create(EditDishViewModel dishToCreate)
         {
-            dishToCreate.Dish.ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png";
-            dishToCreate.Dish.DishId = Guid.NewGuid();
             _dishRepository.Add(dishToCreate.Dish);
             return RedirectToAction("List");
         }

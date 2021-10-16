@@ -6,7 +6,7 @@
 @foreach (var rDish in Model.RecommendedDishes)
 {
     <a asp-controller="Dish" asp-action="Details" asp-route-id="@rDish.DishId">
-        <div style="display: inline-block; background-color:#444;">
+        <div style="display:inline-block; background-color:#444; margin:.5em; width:25%; text-align:center;;">
             <img src="@rDish.ImageUrl" width="300" height="300" />
             <h2>@rDish.Name</h2>
             <h2>@rDish.Price</h2>

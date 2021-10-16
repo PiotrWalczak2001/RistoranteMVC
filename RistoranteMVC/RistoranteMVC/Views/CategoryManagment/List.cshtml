@@ -1,21 +1,27 @@
 ﻿@model List<Category>
 
-<a asp-controller="CategoryManagment" asp-action="Create">Create new category</a>
-
+    <div style="display: block; background-color:tomato; width:100%; font-size:3rem">
+        <a asp-controller="CategoryManagment" asp-action="Create">Create new category</a>
+    </div>
 @foreach (var category in Model)
 {
-    <p>@category.CategoryId</p>
-    <p>@category.Name</p>
+     <div style="display:inline-block; background-color:#444; margin:.5em; width:25%; text-align:center; color=#fff;">
+         <div>
+             <h2>@category.Name</h2>
+             <h3>@category.CategoryId</h3>
+         </div>
+         <div>
+             <form asp-controller="CategoryManagment" asp-action="Details" asp-route-id="@category.CategoryId" method="get">
+                 <button type="submit">Details</button>
+             </form>
 
-    <form asp-controller="CategoryManagment" asp-action="Details" asp-route-id="@category.CategoryId" method="get">
-        <button type="submit">Details</button>
-    </form>
+             <form asp-controller="CategoryManagment" asp-action="Edit" asp-route-id="@category.CategoryId" method="get">
+                 <button type="submit">Edit</button>
+             </form>
 
-    <form asp-controller="CategoryManagment" asp-action="Edit" asp-route-id="@category.CategoryId" method="get">
-        <button type="submit">Edit</button>
-    </form>
-
-    <form asp-controller="CategoryManagment" asp-action="Delete" asp-route-id="@category.CategoryId" method="post">
-        <button type="submit">Delete</button>
-    </form>
+             <form asp-controller="CategoryManagment" asp-action="Delete" asp-route-id="@category.CategoryId" method="post">
+                 <button type="submit">Delete</button>
+             </form>
+         </div>
+     </div>
 }

@@ -1,37 +1,46 @@
 ﻿@model ShoppingCartViewModel
 
-<h1>Shopping Cart</h1>
+@if (Model.ShoppingCart == null)
+{
+    <h1>@Model.Message</h1>
+    <h3>Please add some stuff :)</h3>
+    <a asp-controller="Home" asp-action="Index"> <h3>Home</h3></a>
+}
+else
+{
+    <h1>Shopping Cart</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Dish name</th>
-            <th>Amount</th>
-            <th>Price per dish</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
-        {
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Dish.Name</td>
-                <td>@item.Amount</td>
-                <td>@item.Dish.Price.ToString("c")</td>
+                <th></th>
+                <th>Dish name</th>
+                <th>Amount</th>
+                <th>Price per dish</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td>@item.Dish.Name</td>
+                    <td>@item.Amount</td>
+                    <td>@item.Dish.Price.ToString("c")</td>
+                    <td>
+                        <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-id="@item.Dish.DishId" class="btn btn-danger">Remove from cart</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total:</td>
                 <td>
-                    <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-id="@item.Dish.DishId" class="btn btn-danger">Remove from cart</a>
+                    @Model.ShoppingCartTotal.ToString("c")
                 </td>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td>Total:</td>
-            <td>
-                @Model.ShoppingCartTotal.ToString("c")
-            </td>
-        </tr>
-    </tfoot>
-</table>
-<a asp-controller="Order" asp-action="Index">Order now!</a>
+        </tfoot>
+    </table>
+    <a asp-controller="Order" asp-action="Index">Order now!</a>
+}

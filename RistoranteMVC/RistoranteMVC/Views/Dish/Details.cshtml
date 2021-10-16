@@ -1,9 +1,16 @@
 ﻿@model Dish
 
-<h1>@Model.Name</h1>
-<h3>@Model.Description</h3>
-<h3>@Model.Category.Name</h3>
-<h3>@Model.Kcal kcal</h3>
-<h3>@Model.Price.ToString("c")</h3>
+<div style="display:flex; justify-content:center; align-content:center;">
+    <div>
+        <img src="@Model.ImageUrl" width="300" height="300" />
+    </div>
+    <div style="text-align:center">
+        <h1>@Model.Name</h1>
+        <h3>@Model.Description</h3>
+        <h3>@Model.Kcal kcal</h3>
+        <h3>@Model.Price.ToString("c")</h3>
+        <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@Model.DishId"><h3>Add to shopping cart</h3></a>
+    </div>
+</div>
 
-<a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-id="@Model.DishId">Add to shopping cart</a>
+

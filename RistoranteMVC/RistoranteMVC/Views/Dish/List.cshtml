@@ -4,11 +4,13 @@
 
 @foreach (var dish in Model.Dishes)
 {
-    <a asp-controller="Dish" asp-action="Details" asp-route-id="@dish.DishId">
-        <div style="display: inline-block; background-color:#444;">
-            <img src="@dish.ImageUrl" width="300" height="300" />
-            <h2>@dish.Name</h2>
-            <h2>@dish.Price</h2>
-        </div>
-    </a> 
+    <div style="display:inline-block; background-color:#444; margin:.5em; width:25%; text-align:center;">
+        <a asp-controller="Dish" asp-action="Details" asp-route-id="@dish.DishId">
+            <div style="display: inline-block; background-color:#444;">
+                <img src="@dish.ImageUrl" width="300" height="300" />
+                <h2>@dish.Name</h2>
+                <h2>@dish.Price</h2>
+            </div>
+        </a>
+    </div>
 }

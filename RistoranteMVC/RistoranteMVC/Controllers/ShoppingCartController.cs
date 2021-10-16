@@ -22,6 +22,11 @@ namespace RistoranteMVC.Controllers
             var itemsFromCart = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = itemsFromCart;
 
+            if(_shoppingCart.ShoppingCartItems.Count == 0)
+            {
+                return View(new ShoppingCartViewModel { Message = "Empty cart" });
+            }
+
             var shoppingCartViewModel = new ShoppingCartViewModel
             {
                 ShoppingCart = _shoppingCart,
