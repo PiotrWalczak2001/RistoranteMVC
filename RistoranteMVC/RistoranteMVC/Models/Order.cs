@@ -6,6 +6,7 @@ namespace RistoranteMVC.Models
 {
     public class Order
     {
+        [Required]
         public Guid OrderId { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         [Required]
@@ -25,6 +26,7 @@ namespace RistoranteMVC.Models
         public string PhoneNumber { get; set; }
         [Required]
         public string Email { get; set; }
+        [Required]
         public decimal OrderTotal { get; set; }
         public DateTime OrderPlaced { get; set; }
     }

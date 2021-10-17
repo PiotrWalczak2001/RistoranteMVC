@@ -15,7 +15,7 @@ namespace RistoranteMVC.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public IActionResult List()
+        public ViewResult List()
         {
             return View(_categoryRepository.ListAll());
         }

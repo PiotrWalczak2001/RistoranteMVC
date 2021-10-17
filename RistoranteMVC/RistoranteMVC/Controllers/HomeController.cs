@@ -16,7 +16,7 @@ namespace RistoranteMVC.Controllers
             _dishRepository = dishRepository;
         }
         [AllowAnonymous]
-        public IActionResult Index()
+        public ViewResult Index()
         {
             List<Dish> recommendedDishes = _dishRepository.RecommendedDishes();
             if(recommendedDishes.Count < 1)

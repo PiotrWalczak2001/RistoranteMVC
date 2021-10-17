@@ -17,7 +17,7 @@ namespace RistoranteMVC.Controllers
             _dishRepository = dishRepository;
         }
 
-        public IActionResult List()
+        public ViewResult List()
         {
             return View(_dishRepository.ListAll());
         }

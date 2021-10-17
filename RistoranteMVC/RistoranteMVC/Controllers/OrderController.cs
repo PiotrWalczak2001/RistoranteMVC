@@ -17,7 +17,7 @@ namespace RistoranteMVC.Controllers
             _shoppingCart = shoppingCart;
         }
         [AllowAnonymous]
-        public IActionResult Index()
+        public ViewResult Index()
         {
             return View();
         }
