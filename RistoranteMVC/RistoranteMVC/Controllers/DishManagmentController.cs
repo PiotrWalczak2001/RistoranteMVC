@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RistoranteMVC.Models;
 using RistoranteMVC.Repositories;
 using RistoranteMVC.ViewModels;
 using System;
@@ -25,8 +26,15 @@ namespace RistoranteMVC.Controllers
         public IActionResult Details(Guid id)
         {
             var matchingDish = _dishRepository.GetById(id);
-            matchingDish.Category = _categoryRepository.GetById(matchingDish.CategoryId);
-            return View(matchingDish);
+            if(matchingDish == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                matchingDish.Category = _categoryRepository.GetById(matchingDish.CategoryId);
+                return View(matchingDish);
+            }          
         }
 
         public IActionResult Create()
@@ -37,31 +45,67 @@ namespace RistoranteMVC.Controllers
         [HttpPost]
         public IActionResult Create(EditDishViewModel dishToCreate)
         {
-            _dishRepository.Add(dishToCreate.Dish);
-            return RedirectToAction("List");
+            if(ModelState.IsValid)
+            {
+                _dishRepository.Add(dishToCreate.Dish);
+                return RedirectToAction("SuccessfulEdit", dishToCreate.Dish);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            _dishRepository.Delete(_dishRepository.GetById(id));
-            return RedirectToAction("List");
+            var matchingDish = _dishRepository.GetById(id);
+            if (matchingDish == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _dishRepository.Delete(id);
+                return RedirectToAction("List");
+            }
         }
 
         public IActionResult Edit(Guid id)
         {
-            return View(new EditDishViewModel
+            var matchingDish = _dishRepository.GetById(id);
+            if (matchingDish == null)
             {
-                Dish = _dishRepository.GetById(id),
-                Categories = _categoryRepository.ListAll()
-            });
+                return NotFound();
+            }
+            else
+            {
+                return View(new EditDishViewModel
+                {
+                    Dish = matchingDish,
+                    Categories = _categoryRepository.ListAll()
+                });
+            }
         }
 
         [HttpPost]
-        public IActionResult Edit(EditDishViewModel dishViewModel)
+        public IActionResult Edit(EditDishViewModel dishToEdit)
         {
-            _dishRepository.Update(dishViewModel.Dish);
-            return RedirectToAction("List");
+            if(ModelState.IsValid)
+            {
+                _dishRepository.Update(dishToEdit.Dish);
+                return RedirectToAction("SuccessfulEdit", dishToEdit.Dish);
+            }
+            else
+            {
+                return View();
+            }
+       
+        }
+
+        public IActionResult SuccessfulEdit(Dish dish)
+        {
+            return View(dish);
         }
     }
 }

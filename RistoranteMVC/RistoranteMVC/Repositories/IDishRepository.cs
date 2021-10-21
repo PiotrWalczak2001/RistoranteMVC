@@ -10,7 +10,7 @@ namespace RistoranteMVC.Repositories
         List<Dish> ListAll();
         Dish Add(Dish dish);
         void Update(Dish dish);
-        void Delete(Dish dish);
+        void Delete(Guid id);
         List<Dish> DishesByCategory(Guid categoryId);
         List<Dish> RecommendedDishes();
     }

@@ -31,9 +31,9 @@ namespace RistoranteMVC.Repositories
             return category;
         }
 
-        public void Delete(Category category)
+        public void Delete(Guid id)
         {
-            _dbContext.Categories.Remove(category);
+            _dbContext.Categories.Remove(_dbContext.Categories.Find(id));
             _dbContext.SaveChanges();
         }
 

@@ -22,7 +22,13 @@ namespace RistoranteMVC.Controllers
 
         public IActionResult Details(Guid id)
         {
-            return View(_categoryRepository.GetById(id));
+            var matchingCategory = _categoryRepository.GetById(id);
+            if(matchingCategory == null)
+            {
+                return NotFound();
+            }
+            else
+                return View(matchingCategory);
         }
 
         public IActionResult Create()
@@ -33,27 +39,60 @@ namespace RistoranteMVC.Controllers
         [HttpPost]
         public IActionResult Create(Category categoryToCreate)
         {
-            _categoryRepository.Add(categoryToCreate);
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                _categoryRepository.Add(categoryToCreate);
+                return RedirectToAction("SuccessfulEdit", categoryToCreate);
+            }
+            else
+                return View();
         }
 
         [HttpPost]
         public IActionResult Delete(Guid id)
         {
-            _categoryRepository.Delete(_categoryRepository.GetById(id));
-            return RedirectToAction("List");
+            var matchingCategory = _categoryRepository.GetById(id);
+            if (matchingCategory == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _categoryRepository.Delete(id);
+                return RedirectToAction("List");
+            }              
         }
 
         public IActionResult Edit(Guid id)
         {
-            return View(_categoryRepository.GetById(id));
+
+            var matchingCategory = _categoryRepository.GetById(id);
+            if (matchingCategory == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(matchingCategory);
+            }
         }
 
         [HttpPost]
         public IActionResult Edit(Category categoryToEdit)
         {
-            _categoryRepository.Update(categoryToEdit);
-            return RedirectToAction("List");
+            if(ModelState.IsValid)
+            {
+                _categoryRepository.Update(categoryToEdit);
+                return RedirectToAction("SuccessfulEdit", categoryToEdit);
+            }
+            else
+                return View();
         }
+
+        public IActionResult SuccessfulEdit(Category category)
+        {
+            return View(category);
+        }
+
     }
 }

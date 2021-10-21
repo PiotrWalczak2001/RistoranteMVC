@@ -10,6 +10,6 @@ namespace RistoranteMVC.Repositories
         List<Category> ListAll();
         Category Add(Category category);
         void Update(Category category);
-        void Delete(Category category);
+        void Delete(Guid id);
     }
 }

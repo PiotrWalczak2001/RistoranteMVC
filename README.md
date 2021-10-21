@@ -6,6 +6,7 @@ Sample application project for Asp.Net Core MVC
 - Asp.Net Core MVC
 - Entity Framework Core
 - MS Sql Server
+- xUnit
 - ...
 
 ## Hot to run

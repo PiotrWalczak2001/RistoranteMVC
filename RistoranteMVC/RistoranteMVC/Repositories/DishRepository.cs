@@ -31,9 +31,9 @@ namespace RistoranteMVC.Repositories
             return dish;
         }
 
-        public void Delete(Dish dish)
+        public void Delete(Guid id)
         {
-            _dbContext.Dishes.Remove(dish);
+            _dbContext.Dishes.Remove(_dbContext.Dishes.Find(id));
             _dbContext.SaveChanges();
         }
 

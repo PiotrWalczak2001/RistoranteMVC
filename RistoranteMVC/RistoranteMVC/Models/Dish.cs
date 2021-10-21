@@ -19,7 +19,6 @@ namespace RistoranteMVC.Models
         public int Kcal { get; set; }
         [Required]
         [DataType(DataType.Currency)]
-        [Range(0,999.99)]
         public decimal Price { get; set; }
         [DataType(DataType.ImageUrl)]
         public string ImageUrl { get; set; }
