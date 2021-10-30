@@ -1,0 +1,29 @@
+﻿@model Category
+
+<form asp-controller="CategoryManagment" asp-action="Edit" method="post" role="form">
+    <h1>Edit category</h1>
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="@Model.CategoryId"></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.CategoryId" class="disabled" />
+            <span asp-validation-for="@Model.CategoryId"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Name"></label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Name" />
+            <span asp-validation-for="@Model.Name"></span>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <input type="submit" value="Edit" />
+        </div>
+    </div>
+
+</form>

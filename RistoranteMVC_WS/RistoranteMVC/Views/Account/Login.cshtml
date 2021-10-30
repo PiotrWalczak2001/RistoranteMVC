@@ -1,0 +1,29 @@
+﻿@model LoginViewModel
+
+<form asp-controller="Account" asp-action="Login" method="post" role="form">
+    <h1>Login Page</h1>
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="UserName"></label>
+        <div class="col-md-10">
+            <input asp-for="UserName"/>
+            <span asp-validation-for="UserName"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <div>
+            <input asp-for="Password"/>
+            <span asp-validation-for="Password"></span>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <input type="submit" value="Log in" />
+        </div>
+    </div>
+
+</form>

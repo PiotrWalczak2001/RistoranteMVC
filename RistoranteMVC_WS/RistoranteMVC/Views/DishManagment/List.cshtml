@@ -1,0 +1,36 @@
+﻿@model List<Dish>
+
+    <div style="display: block; background-color:tomato; width:100%; font-size:3rem">
+        <a asp-controller="DishManagment" asp-action="Create">Create new dish</a>
+    </div>
+
+
+@foreach (var dish in Model)
+{
+
+    <div style="display:inline-block; background-color:#444; margin:.5em; width:25%; text-align:center;">
+        <div>
+            <img src="@dish.ImageUrl" width="300" height="300" />
+            <h2>@dish.Name</h2>
+            <h3>@dish.DishId</h3>
+        </div>
+        
+        <div>
+            <form asp-controller="DishManagment" asp-action="Details" asp-route-id="@dish.DishId" method="get">
+                <button type="submit">Details</button>
+            </form>
+
+            <form asp-controller="DishManagment" asp-action="Edit" asp-route-id="@dish.DishId" method="get">
+                <button type="submit">Edit</button>
+            </form>
+
+            <form asp-controller="DishManagment" asp-action="Delete" asp-route-id="@dish.DishId" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        
+    </div>
+
+    
+
+}
