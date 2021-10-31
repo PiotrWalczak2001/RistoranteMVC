@@ -14,6 +14,7 @@ namespace RistoranteMVC.Models
 
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,55 @@ namespace RistoranteMVC.Models
                 Id = adminRoleId,
                 Name = "Admin",
                 NormalizedName = "ADMINISTRATOR"
+            });
+
+
+            modelBuilder.Entity<Employee>().HasData(new Employee
+            {
+                EmployeeId = Guid.NewGuid(),
+                FirstName = "Jan",
+                LastName = "Fajny",
+                JobRole = "Cook",
+                Gender = "Male",
+                Email = "jan@mail.com",
+                PhoneNumber = "111222333",
+                City = "Cracov",
+                ZipCode = "32-200",
+                Address = "Konopnicka 15",
+                BirthDate = DateTime.Now,
+                HireDate = DateTime.Now,
+            });
+
+            modelBuilder.Entity<Employee>().HasData(new Employee
+            {
+                EmployeeId = Guid.NewGuid(),
+                FirstName = "Ben",
+                LastName = "Kierwoca",
+                JobRole = "Driver",
+                Gender = "Male",
+                Email = "ben@mail.com",
+                PhoneNumber = "444222333",
+                City = "Cracov",
+                ZipCode = "32-200",
+                Address = "Rydla 59",
+                BirthDate = DateTime.Now,
+                HireDate = DateTime.Now,
+            });
+
+            modelBuilder.Entity<Employee>().HasData(new Employee
+            {
+                EmployeeId = Guid.NewGuid(),
+                FirstName = "Katarzyna",
+                LastName = "Obokmlyna",
+                JobRole = "Manager",
+                Gender = "Female",
+                Email = "kasia@mail.com",
+                PhoneNumber = "999222333",
+                City = "Cracov",
+                ZipCode = "32-200",
+                Address = "Pawia 5",
+                BirthDate = DateTime.Now,
+                HireDate = DateTime.Now,
             });
 
             modelBuilder.Entity<Category>().HasData(new Category

@@ -26,6 +26,7 @@ namespace RistoranteMVC
 
             services.AddScoped<IDishRepository, DishRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
 
             services.AddControllersWithViews();      

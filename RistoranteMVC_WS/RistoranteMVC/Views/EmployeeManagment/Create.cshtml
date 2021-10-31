@@ -1,0 +1,109 @@
+﻿@model Employee
+
+<form asp-controller="EmployeeManagment" asp-action="Create" method="post" role="form">
+    <h1>Add new employee</h1>
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="@Model.EmployeeId">Employee Id</label>
+        <div class="col-md-10">
+            <input value="@Guid.NewGuid()" asp-for="@Model.EmployeeId" />
+            <span asp-validation-for="@Model.EmployeeId"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.FirstName">First name</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.FirstName" />
+            <span asp-validation-for="@Model.FirstName"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.LastName">Last name</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.LastName" />
+            <span asp-validation-for="@Model.LastName"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Email">Email</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Email" />
+            <span asp-validation-for="@Model.Email"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.JobRole">Job role</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.JobRole" />
+            <span asp-validation-for="@Model.JobRole"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Gender">Gender</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Gender" />
+            <span asp-validation-for="@Model.Gender"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.PhoneNumber">Phone number</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.PhoneNumber" />
+            <span asp-validation-for="@Model.PhoneNumber"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.City">City</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.City" />
+            <span asp-validation-for="@Model.City"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.ZipCode">Zip code</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.ZipCode" />
+            <span asp-validation-for="@Model.ZipCode"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.Address">Address</label>
+        <div class="col-md-10">
+            <input asp-for="@Model.Address" />
+            <span asp-validation-for="@Model.Address"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.BirthDate">Birth date</label>
+        <div class="col-md-10">
+            <input type="date" asp-for="@Model.BirthDate" />
+            <span asp-validation-for="@Model.BirthDate"></span>
+        </div>
+    </div>
+
+    <div>
+        <label asp-for="@Model.HireDate">Hire date</label>
+        <div class="col-md-10">
+            <input type="date" asp-for="@Model.HireDate" />
+            <span asp-validation-for="@Model.HireDate"></span>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <input type="submit" value="Add" />
+        </div>
+    </div>
+
+</form>

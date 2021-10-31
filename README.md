@@ -1,10 +1,9 @@
 # RistoranteMVC
 
 ### INFO
-RistoranteMVC_WS is second project without session (ShoppingCart and Order features deleted)\
-
 (WORK IN PROGRESS)\
-Sample application project for Asp.Net Core MVC
+Sample application project for Asp.Net Core MVC\
+RistoranteMVC_WS is second project without session (ShoppingCart and Order features deleted)
 
 - Asp.Net Core MVC
 - Entity Framework Core

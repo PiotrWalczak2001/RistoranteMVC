@@ -15,7 +15,7 @@ namespace RistoranteMVC.Models
         [Required]
         public Guid CategoryId { get; set; }
         [Required]
-        [Range(0,999.99)]
+        [Range(0,9999.99)]
         public int Kcal { get; set; }
         [Required]
         [DataType(DataType.Currency)]

@@ -1,0 +1,15 @@
+﻿@model Employee
+
+<h1>Successfuly added/edited employee</h1>
+
+<h1>@Model.FirstName @Model.LastName</h1>
+<h3>Job role: @Model.JobRole</h3>
+<h3>Gender: @Model.Gender</h3>
+<h3>Email: @Model.Email</h3>
+<h3>Phone number: @Model.PhoneNumber</h3>
+<h3>Zip codeS: @Model.ZipCode @Model.City</h3>
+<h3>Address: @Model.Address</h3>
+<h3>Birth date: @Model.BirthDate</h3>
+<h3>Hire date: @Model.HireDate</h3>
+
+<a asp-controller="EmployeeManagment" asp-action="List">All employees</a>

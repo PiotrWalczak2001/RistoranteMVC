@@ -10,7 +10,7 @@ using RistoranteMVC.Models;
 namespace RistoranteMVC.Migrations
 {
     [DbContext(typeof(RistoranteMVCDbContext))]
-    [Migration("20211014144437_InitialMigration")]
+    [Migration("20211030133452_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,7 +51,7 @@ namespace RistoranteMVC.Migrations
                         new
                         {
                             Id = "DAFF313F-89DD-4621-BC3F-B6EE1F2A23C6",
-                            ConcurrencyStamp = "c8594eb9-e8fc-4f9e-8cf9-a122ffc7d837",
+                            ConcurrencyStamp = "0e58aecc-e646-4ac9-aa1b-30b394b5ad8b",
                             Name = "Admin",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -140,6 +140,13 @@ namespace RistoranteMVC.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "D174C90E-6C1D-452C-B91F-CA39C112B73E",
+                            RoleId = "DAFF313F-89DD-4621-BC3F-B6EE1F2A23C6"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -230,6 +237,26 @@ namespace RistoranteMVC.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "D174C90E-6C1D-452C-B91F-CA39C112B73E",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4c33c472-3703-4baf-95bd-8980ce368de5",
+                            Email = "admin@mail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Janeczek",
+                            LastName = "Adminowy",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@MAIL.COM",
+                            NormalizedUserName = "JANECZEK",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMNDTvZPNYq01BZgw0OVjd7AlSzcAdgvkdNBTPMOMU/bWIicpdxHcGHdituW0lC3lw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4bb0b0d4-3774-4852-9002-367993eaf9ee",
+                            TwoFactorEnabled = false,
+                            UserName = "Janeczek"
+                        });
                 });
 
             modelBuilder.Entity("RistoranteMVC.Models.Category", b =>
@@ -239,6 +266,7 @@ namespace RistoranteMVC.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
@@ -283,6 +311,7 @@ namespace RistoranteMVC.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
@@ -292,6 +321,7 @@ namespace RistoranteMVC.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
@@ -309,7 +339,7 @@ namespace RistoranteMVC.Migrations
                     b.HasData(
                         new
                         {
-                            DishId = new Guid("14849acc-cc85-41b4-8766-494262635eca"),
+                            DishId = new Guid("a0ad35ef-635b-4230-ad0a-d1519f0b0c7c"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "Delicious classic from the pizza family",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -320,7 +350,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("c48dcf3e-1dc0-4dd7-8337-69d51feff5bc"),
+                            DishId = new Guid("8dc7a2e4-af20-41eb-b36f-d94ad3beb4bf"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "The best for meetings with friends",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -331,7 +361,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("092ac275-7d68-42f3-8e23-2385788ae304"),
+                            DishId = new Guid("f0466e0b-222e-489a-815e-eb4f318b6037"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "American pizza in the Italian version",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -342,7 +372,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("dc0cc3ac-ce43-4635-832b-10ff23fa1495"),
+                            DishId = new Guid("cdeae544-bae4-4a4d-b509-77214737f60d"),
                             CategoryId = new Guid("9bcd1113-6b23-4493-bc83-0c80a436430a"),
                             Description = "the best cheeses on your favorite pizza",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -353,7 +383,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("88b9c79c-1409-456d-ba43-cdc90e67e289"),
+                            DishId = new Guid("0e055b53-a388-4339-a037-841db09f17bc"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "The best pasta with classic bolognese sauce",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -364,7 +394,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("110d8eaa-25b5-47aa-8168-030a9fda783e"),
+                            DishId = new Guid("3d8c236a-3f7f-4384-8c10-a81dfcc4439e"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "Our kitchen's bestseller",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -375,7 +405,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("0dc345ab-cb02-4fe2-837b-814e383f70db"),
+                            DishId = new Guid("0e21c2f3-dfcd-4504-b6b7-c71ee9c4886c"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "For more hunger",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -386,7 +416,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("66ccba18-2e43-4e85-9e4c-9507d9ad8f22"),
+                            DishId = new Guid("a04b9671-82c3-40d8-b752-f8913b237667"),
                             CategoryId = new Guid("a4b49c2f-93b6-42c7-99c6-524638667afd"),
                             Description = "This taste will surprise you",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -397,7 +427,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("2473317c-36ba-4d81-8232-8897f830caca"),
+                            DishId = new Guid("e46aa963-cd4c-42ab-a80c-92ba5a272653"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Its taste comes from the best ingredients",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -408,7 +438,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("472f8c7e-c560-41b0-a816-c5dda1beafd7"),
+                            DishId = new Guid("4f4620c3-f1c1-4b6d-845b-211e898b3436"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Our novelty",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -419,7 +449,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("96601e4f-bab3-4a8b-873f-eda798c8a683"),
+                            DishId = new Guid("86411cf0-88e8-4045-9232-c3aec8585736"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Tasty and nutritious",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -430,7 +460,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("2d18db44-b812-44b3-9eab-7a3dd31b5dfe"),
+                            DishId = new Guid("c70b1d34-bc12-4de0-916a-e6885642e7af"),
                             CategoryId = new Guid("c85f1ad9-cef4-4bab-94da-e4dfb466c158"),
                             Description = "Very aromatic dish that will delight everyone",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -441,7 +471,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("f278f545-72e5-4455-84ea-c93b1658d1ec"),
+                            DishId = new Guid("d47e1cac-1d38-4c93-b0d1-7b81fbffc1be"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "The best dessert that will impress your other half",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -452,7 +482,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("f330dd1e-4d8a-4317-95ad-84afad8aa5ee"),
+                            DishId = new Guid("3c5c7c76-1d77-4fd8-afc6-8914d187469f"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "Melts in your mouth",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -463,7 +493,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("1e73f4aa-5115-4bd9-be16-255c4898e789"),
+                            DishId = new Guid("ee239c12-9087-4d20-a710-ba82b2f22e28"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "Sweet and cold what more could you want",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -474,7 +504,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("4e8a7dd7-9954-4f92-824c-a81454e1c247"),
+                            DishId = new Guid("3683ca21-8f12-487f-8945-010927470416"),
                             CategoryId = new Guid("10895537-2732-403b-87dc-047ec2535593"),
                             Description = "It is worth a try",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -485,7 +515,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("df9e7226-4df1-46cf-84bb-74128ca8ac5a"),
+                            DishId = new Guid("37d4da99-b860-4622-a388-de20a9e2d130"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just good coffee",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -496,7 +526,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("b2c50814-3222-4e2d-b3e0-f7c0f66a717a"),
+                            DishId = new Guid("27a5a65d-6743-4435-9c0a-14c915aa088f"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just good tea",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -507,7 +537,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("40dd5d10-a7a7-405b-b984-1fdc90ccc67a"),
+                            DishId = new Guid("883c5b6e-5a84-481a-9f1f-39cc2cb5eeaa"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just water",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -518,7 +548,7 @@ namespace RistoranteMVC.Migrations
                         },
                         new
                         {
-                            DishId = new Guid("cf82c88a-8753-42af-b4b3-7b246868f52e"),
+                            DishId = new Guid("fd596faa-6989-457f-a93e-c21ceba1d110"),
                             CategoryId = new Guid("d99c5243-4815-4722-9fe3-e27623b8232b"),
                             Description = "Just Coca-Cola",
                             ImageUrl = "https://cdn.pixabay.com/photo/2016/09/13/18/38/silverware-1667988_960_720.png",
@@ -529,17 +559,17 @@ namespace RistoranteMVC.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RistoranteMVC.Models.Order", b =>
+            modelBuilder.Entity("RistoranteMVC.Models.Employee", b =>
                 {
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AddressLine1")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -550,76 +580,74 @@ namespace RistoranteMVC.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("JobRole")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("OrderPlaced")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("OrderTotal")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("EmployeeId");
 
-                    b.ToTable("Orders");
-                });
+                    b.ToTable("Employees");
 
-            modelBuilder.Entity("RistoranteMVC.Models.OrderDetail", b =>
-                {
-                    b.Property<Guid>("OrderDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("DishId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("DishId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("RistoranteMVC.Models.ShoppingCartItem", b =>
-                {
-                    b.Property<Guid>("ShoppingCartItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("DishId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ShoppingCartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ShoppingCartItemId");
-
-                    b.HasIndex("DishId");
-
-                    b.ToTable("ShoppingCartItems");
+                    b.HasData(
+                        new
+                        {
+                            EmployeeId = new Guid("343c45aa-6f76-4e21-a855-4b5c3ad9d2ab"),
+                            Address = "Konopnicka 15",
+                            BirthDate = new DateTime(2021, 10, 30, 15, 34, 52, 54, DateTimeKind.Local).AddTicks(62),
+                            City = "Cracov",
+                            Email = "jan@mail.com",
+                            FirstName = "Jan",
+                            Gender = "Male",
+                            HireDate = new DateTime(2021, 10, 30, 15, 34, 52, 57, DateTimeKind.Local).AddTicks(5112),
+                            JobRole = "Cook",
+                            LastName = "Fajny",
+                            PhoneNumber = "111222333",
+                            ZipCode = "32-200"
+                        },
+                        new
+                        {
+                            EmployeeId = new Guid("a089f74d-8169-45ab-9acd-3c32c56e190a"),
+                            Address = "Rydla 59",
+                            BirthDate = new DateTime(2021, 10, 30, 15, 34, 52, 57, DateTimeKind.Local).AddTicks(5647),
+                            City = "Cracov",
+                            Email = "ben@mail.com",
+                            FirstName = "Ben",
+                            Gender = "Male",
+                            HireDate = new DateTime(2021, 10, 30, 15, 34, 52, 57, DateTimeKind.Local).AddTicks(5659),
+                            JobRole = "Driver",
+                            LastName = "Kierwoca",
+                            PhoneNumber = "444222333",
+                            ZipCode = "32-200"
+                        },
+                        new
+                        {
+                            EmployeeId = new Guid("d16820d4-56d2-43e7-b786-010927874b93"),
+                            Address = "Pawia 5",
+                            BirthDate = new DateTime(2021, 10, 30, 15, 34, 52, 57, DateTimeKind.Local).AddTicks(5681),
+                            City = "Cracov",
+                            Email = "kasia@mail.com",
+                            FirstName = "Katarzyna",
+                            Gender = "Female",
+                            HireDate = new DateTime(2021, 10, 30, 15, 34, 52, 57, DateTimeKind.Local).AddTicks(5684),
+                            JobRole = "Manager",
+                            LastName = "Obokmlyna",
+                            PhoneNumber = "999222333",
+                            ZipCode = "32-200"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -682,39 +710,6 @@ namespace RistoranteMVC.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("RistoranteMVC.Models.OrderDetail", b =>
-                {
-                    b.HasOne("RistoranteMVC.Models.Dish", "Dish")
-                        .WithMany()
-                        .HasForeignKey("DishId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RistoranteMVC.Models.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Dish");
-
-                    b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("RistoranteMVC.Models.ShoppingCartItem", b =>
-                {
-                    b.HasOne("RistoranteMVC.Models.Dish", "Dish")
-                        .WithMany()
-                        .HasForeignKey("DishId");
-
-                    b.Navigation("Dish");
-                });
-
-            modelBuilder.Entity("RistoranteMVC.Models.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

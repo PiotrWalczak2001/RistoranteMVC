@@ -1,0 +1,32 @@
+﻿@model List<Employee>
+
+    <div style="display: block; background-color:tomato; width:100%; font-size:3rem">
+        <a asp-controller="EmployeeManagment" asp-action="Create">Add new employee</a>
+    </div>
+
+
+@foreach (var employee in Model)
+{
+
+    <div style="display:inline-block; background-color:#444; margin:.5em; width:25%; text-align:center;">
+        <div>
+            <h2>@employee.FirstName @employee.LastName</h2>
+            <h2>@employee.JobRole</h2>
+            <h3>@employee.EmployeeId</h3>
+        </div>
+        
+        <div>
+            <form asp-controller="EmployeeManagment" asp-action="Details" asp-route-id="@employee.EmployeeId" method="get">
+                <button type="submit">Details</button>
+            </form>
+
+            <form asp-controller="EmployeeManagment" asp-action="Delete" asp-route-id="@employee.EmployeeId" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+        
+    </div>
+
+    
+
+}
