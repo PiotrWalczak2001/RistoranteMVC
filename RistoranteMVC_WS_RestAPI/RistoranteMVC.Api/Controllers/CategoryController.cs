@@ -27,7 +27,7 @@ namespace RistoranteMVC.Api.Controllers
             return Ok(dtos);
         }
 
-        [HttpGet("details/{id}", Name = "GetCategoryDetails")]
+        [HttpGet("details/{id}", Name = "GetCategoryById")]
         public async Task<ActionResult<CategoryVm>> GetCategoryById(Guid id)
         {
             var query = new GetCategoryByIdQuery() { Id = id };

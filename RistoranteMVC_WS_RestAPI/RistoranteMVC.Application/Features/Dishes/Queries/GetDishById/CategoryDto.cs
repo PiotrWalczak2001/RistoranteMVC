@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RistoranteMVC.Application.Features.Categories.Queries.GetCategoryById
+namespace RistoranteMVC.Application.Features.Dishes.Queries.GetDishById
 {
-    public class CategoryVm
+    public class CategoryDto
     {
         public Guid CategoryId { get; set; }
         public string Name { get; set; }
