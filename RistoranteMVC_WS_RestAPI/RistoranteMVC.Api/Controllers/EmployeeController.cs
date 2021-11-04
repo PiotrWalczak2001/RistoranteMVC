@@ -1,5 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RistoranteMVC.Application.Features.Employees.Commands.AddEmployee;
+using RistoranteMVC.Application.Features.Employees.Commands.DeleteEmployee;
+using RistoranteMVC.Application.Features.Employees.Commands.UpdateEmployee;
 using RistoranteMVC.Application.Features.Employees.Queries.GetAllEmployees;
 using RistoranteMVC.Application.Features.Employees.Queries.GetEmployeeById;
 using System;
@@ -32,5 +35,30 @@ namespace RistoranteMVC.Api.Controllers
             var query = new GetEmployeeByIdQuery() { Id = id };
             return Ok(await _mediator.Send(query));
         }
+
+        
+
+        [HttpPost(Name = "AddEmployee")]
+        public async Task<ActionResult<Guid>> Add([FromBody] AddEmployeeCommand addEmployeeCommand)
+        {
+            var id = await _mediator.Send(addEmployeeCommand);
+            return Ok(id);
+        }
+
+        [HttpPut(Name = "UpdateEmployee")]
+        public async Task<ActionResult<Guid>> Update([FromBody] UpdateEmployeeCommand updateEmployeeCommand)
+        {
+            var id = await _mediator.Send(updateEmployeeCommand);
+            return Ok(id);
+        }
+
+
+        [HttpDelete("{id}", Name = "DeleteEmployee")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var deleteEmployeeCommand = new DeleteEmployeeCommand() { EmployeeId = id };
+            await _mediator.Send(deleteEmployeeCommand);
+            return NoContent();
+        } 
     }
 }

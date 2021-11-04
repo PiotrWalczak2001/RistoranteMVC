@@ -1,5 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RistoranteMVC.Application.Features.Dishes.Commands.AddDish;
+using RistoranteMVC.Application.Features.Dishes.Commands.DeleteDish;
+using RistoranteMVC.Application.Features.Dishes.Commands.UpdateDish;
 using RistoranteMVC.Application.Features.Dishes.Queries.GetAllDishes;
 using RistoranteMVC.Application.Features.Dishes.Queries.GetDishById;
 using System;
@@ -32,6 +35,31 @@ namespace RistoranteMVC.Api.Controllers
         {
             var query = new GetDishByIdQuery() { Id = id };
             return Ok(await _mediator.Send(query));
+        }
+
+
+
+        [HttpPost(Name = "AddDish")]
+        public async Task<ActionResult<Guid>> Add([FromBody] AddDishCommand addDishCommand)
+        {
+            var id = await _mediator.Send(addDishCommand);
+            return Ok(id);
+        }
+
+        [HttpPut(Name = "UpdateDish")]
+        public async Task<ActionResult<Guid>> Update([FromBody] UpdateDishCommand updateDishCommand)
+        {
+            var id = await _mediator.Send(updateDishCommand);
+            return Ok(id);
+        }
+
+
+        [HttpDelete("{id}", Name = "DeleteDish")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var deleteDishCommand = new DeleteDishCommand() { DishId = id };
+            await _mediator.Send(deleteDishCommand);
+            return NoContent();
         }
 
     }

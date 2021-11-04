@@ -19,9 +19,7 @@ RistoranteMVC_WS_RestAPI is third project entities and features base on Ristoran
 - Clean Architecture
 - CQRS
 - AutoMapper
-- FluentValidation
 - Swagger
-- xUnit
 - ...
 
 ## How to run
@@ -31,5 +29,6 @@ RistoranteMVC_WS_RestAPI is third project entities and features base on Ristoran
 
 ### Important info
 
+- In this project we have 3 db's so You have to run "-update-database" for each you want to use
 - Remember about comma "," in price
 - Admin user (Login: Janeczek, Password: Adminowy$12) 
